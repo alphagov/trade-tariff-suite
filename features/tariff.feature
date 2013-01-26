@@ -92,7 +92,12 @@ Feature: Trade Tariff
     When I visit "/trade-tariff/commodities/8452300000?as_of=2012-12-12"
     Then I should see "Goods are subject to VAT standard rate"
 
-  @normal:
+  @normal
   Scenario: Show a meursing commodity
     When I visit "/trade-tariff/commodities/1704909919?day=25&month=1&year=2013"
     Then I should see "meursing"
+
+  @normal
+  Scenario: Show a commodity with Quota Order Number association
+    When I visit "/trade-tariff/commodities/1702201000"
+    Then I should see "Maple sugar and maple syrup"

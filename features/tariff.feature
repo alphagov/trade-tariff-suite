@@ -101,3 +101,8 @@ Feature: Trade Tariff
   Scenario: Show a commodity with Quota Order Number association
     When I visit "/trade-tariff/commodities/1702201000"
     Then I should see "Maple sugar and maple syrup"
+
+  @normal
+  Scenario: Show a commodity with Quota Order Number association
+    When I visit "/trade-tariff/commodities/1701910000?as_of=2006-02-01"
+    Then I should see "Containing added flavouring or colouring matter"

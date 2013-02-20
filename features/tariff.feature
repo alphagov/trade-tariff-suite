@@ -106,3 +106,9 @@ Feature: Trade Tariff
   Scenario: Show a commodity with Quota Order Number association
     When I visit "/trade-tariff/commodities/1701910000?as_of=2006-02-01"
     Then I should see "Containing added flavouring or colouring matter"
+
+  @pending
+  @normal
+  Scenario: Non-declarable commodities aren't accessible (visiting will raise a Net::HTTPNotFound exception)
+    When I visit "/trade-tariff/commodities/3903909000"
+    Then I should get a page not found response

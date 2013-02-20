@@ -1,3 +1,13 @@
+Given /^I might need authorising$/ do
+  if ENV["AUTH_USERNAME"] && ENV["AUTH_PASSWORD"]
+    name = ENV["AUTH_USERNAME"]
+    password = ENV["AUTH_PASSWORD"]
+
+    # REVIEW: This is quite tightly coupled to mechanize
+    page.driver.browser.agent.add_auth(base_url, name, password)
+  end
+end
+
 When /^I visit "(.*?)"$/ do |relative_url|
   visit "#{base_url}#{relative_url}"
 end

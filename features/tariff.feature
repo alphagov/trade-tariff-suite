@@ -1,5 +1,8 @@
 Feature: Trade Tariff
 
+  Background:
+    Given I might need authorising
+
   @normal
   Scenario: supports declarable headings
     When I visit "/trade-tariff/headings/4017"

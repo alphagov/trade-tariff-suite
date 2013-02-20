@@ -10,7 +10,7 @@ end
 
 When /^I visit "(.*?)"$/ do |relative_url|
   # nginx rate-limiting seems to kick in if we test the service too aggressively?
-  sleep 0.1
+  sleep 0.2
   visit "#{base_url}#{relative_url}"
 end
 

@@ -8,7 +8,18 @@ Given /^I might need authorising$/ do
   end
 end
 
-When /^I visit "(.*?)"$/ do |relative_url|
+def tariff_date(iso_date)
+  "year=#{iso_date.slice(0, 4)}&month=#{iso_date.slice(5, 2)}&day=#{iso_date.slice(7, 2)}"
+end
+
+When /^I visit "(.*?)" for "(.*?)"$/ do |relative_url, iso_date|
+  # nginx rate-limiting seems to kick in if we test the service too aggressively?
+  sleep 0.2
+  date_query = tariff_date(iso_date)
+  visit "#{base_url}#{relative_url}?#{date_query}"
+end
+
+When /^I visit "([^"]*?)"$/ do |relative_url|
   # nginx rate-limiting seems to kick in if we test the service too aggressively?
   sleep 0.2
   visit "#{base_url}#{relative_url}"

@@ -110,8 +110,7 @@ Feature: Trade Tariff
     When I visit "/trade-tariff/commodities/1701910000" for "2006-02-01"
     Then I should see "Containing added flavouring or colouring matter"
 
-  @pending
   @normal
   Scenario: Non-declarable commodities aren't accessible (visiting will raise a Net::HTTPNotFound exception)
-    When I visit "/trade-tariff/commodities/3903909000"
+    When I visit non-existent page "/trade-tariff/commodities/3903909000" for "2013-03-20"
     Then I should get a page not found response

@@ -15,5 +15,14 @@ def base_url
   end
 end
 
+def api_url
+  ENV["API_URL"]
+
+end
+
+def demo_api_url
+  ENV["DEMO_API_URL"]
+end
+
 Capybara.default_driver = :mechanize
 Capybara.app_host       = base_url

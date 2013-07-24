@@ -1,7 +1,11 @@
 source "http://rubygems.org"
 
+gem "faraday"
+gem "pry"
 gem "capybara"
 gem "capybara-mechanize"
 gem "cucumber"
 gem "rake"
 gem "rspec"
+gem "yajl-ruby"
+gem "hashdiff"

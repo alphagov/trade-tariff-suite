@@ -46,3 +46,18 @@ Then /^I should see a measure for a country:$/ do |table|
     measure.map(&:text)[0].should =~ Regexp.new(Regexp.escape(row['type']))
   end
 end
+
+When /^I visit non-existent page "([^"]*?)" for "(.*?)"$/ do |relative_url, iso_date|
+  # nginx rate-limiting seems to kick in if we test the service too aggressively?
+  sleep 0.2
+
+  date_query = tariff_date(iso_date)
+
+  lambda {
+    visit "#{base_url}#{relative_url}?#{date_query}"
+  }.should raise_error(RuntimeError, /404/)
+end
+
+Then /^I should get a page not found response$/ do
+  page.body.include?("The page you are looking for can't be found")
+end
